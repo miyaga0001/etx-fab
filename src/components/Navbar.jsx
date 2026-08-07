@@ -21,7 +21,7 @@ export default function Navbar() {
           onClick={() => setOpen(false)}
         >
           <span className="text-lg font-bold tracking-wide text-white">ETX FAB</span>
-          <span className="text-xs text-[#e67e22] font-medium tracking-widest uppercase">& Machine</span>
+          <span className="text-xs text-red font-medium tracking-widest uppercase">& Machine</span>
         </Link>
 
         {/* Desktop nav */}
@@ -31,7 +31,7 @@ export default function Navbar() {
               key={to}
               to={to}
               className={({ isActive }) =>
-                `text-sm font-medium transition-colors ${isActive ? 'text-[#e67e22]' : 'text-gray-300 hover:text-white'}`
+                `text-sm font-medium transition-colors ${isActive ? 'text-red' : 'text-gray-300 hover:text-white'}`
               }
             >
               {label}
@@ -39,7 +39,7 @@ export default function Navbar() {
           ))}
           <Link
             to="/quote"
-            className="bg-[#e67e22] hover:bg-[#cf6d17] text-white text-sm font-semibold px-4 py-2 rounded transition-colors"
+            className="bg-red hover:bg-red-bright text-white text-sm font-semibold px-4 py-2 rounded transition-colors"
           >
             Get a Quote
           </Link>
@@ -65,7 +65,7 @@ export default function Navbar() {
                 to={to}
                 onClick={() => setOpen(false)}
                 className={({ isActive }) =>
-                  `text-sm font-medium py-2 px-2 rounded transition-colors ${isActive ? 'text-[#e67e22]' : 'text-gray-300 hover:text-white'}`
+                  `text-sm font-medium py-2 px-2 rounded transition-colors ${isActive ? 'text-red' : 'text-gray-300 hover:text-white'}`
                 }
               >
                 {label}
@@ -74,7 +74,7 @@ export default function Navbar() {
             <Link
               to="/quote"
               onClick={() => setOpen(false)}
-              className="mt-2 bg-[#e67e22] hover:bg-[#cf6d17] text-white text-sm font-semibold px-4 py-2 rounded text-center transition-colors"
+              className="mt-2 bg-red hover:bg-red-bright text-white text-sm font-semibold px-4 py-2 rounded text-center transition-colors"
             >
               Get a Quote
             </Link>
