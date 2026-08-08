@@ -57,7 +57,7 @@ export default function About() {
               </div>
               <div>
                 <h3 className="font-semibold text-[#1a1f2e] mb-1">The team</h3>
-                <p className="text-xs text-gray-400 italic">[Team overview — to be added]</p>
+                <p className="text-sm text-gray-600">Locally owned and operated — a family-owned shop proudly serving Longview and all of East Texas.</p>
               </div>
             </div>
           </div>
@@ -67,26 +67,18 @@ export default function About() {
       {/* Values */}
       <section className="bg-gray-50 py-14 border-b border-gray-100">
         <div className="max-w-6xl mx-auto px-4 sm:px-6">
-          <h2 className="text-2xl font-bold text-[#1a1f2e] mb-8">How we operate</h2>
-          <div className="grid grid-cols-1 sm:grid-cols-3 gap-6">
+          <h2 className="text-2xl font-bold text-[#1a1f2e] mb-8">Why choose ETX Fab</h2>
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
             {[
-              {
-                heading: 'Straight talk',
-                body: 'We quote what it costs and build what we quoted. If something changes mid-job, we tell you before we do it.',
-              },
-              {
-                heading: 'Real craftsmen',
-                body: 'The people who quote your job are the same ones who make it. No outsourcing, no surprises.',
-              },
-              {
-                heading: 'East Texas roots',
-                body: "We've built things for neighbors, ranchers, oilfield contractors, and small businesses throughout the region. We intend to keep doing that.",
-              },
-            ].map(({ heading, body }) => (
-              <div key={heading} className="bg-white border border-gray-200 rounded-lg p-6">
+              'Years of hands-on experience in precision fabrication and machining',
+              'Certified welders and highly skilled machinists',
+              'Fast turnaround without compromising quality',
+              'Fair, honest rates for premium craftsmanship',
+              'Locally owned, proudly serving Longview and all of East Texas',
+            ].map((point) => (
+              <div key={point} className="bg-white border border-gray-200 rounded-lg p-6">
                 <div className="w-2 h-8 bg-red rounded mb-4" />
-                <h3 className="font-bold text-[#1a1f2e] mb-2">{heading}</h3>
-                <p className="text-sm text-gray-600 leading-relaxed">{body}</p>
+                <p className="text-sm font-medium text-[#1a1f2e] leading-relaxed">{point}</p>
               </div>
             ))}
           </div>
