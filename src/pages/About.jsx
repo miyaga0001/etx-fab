@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom'
-import { MapPin, Clock, ArrowRight, Users } from 'lucide-react'
+import { MapPin, ArrowRight, Users } from 'lucide-react'
 
 export default function About() {
   return (
@@ -39,18 +39,7 @@ export default function About() {
               </div>
             </div>
 
-            {/* Hours */}
-            <div className="flex items-start gap-4 p-5 border border-gray-200 rounded-lg">
-              <div className="w-10 h-10 bg-red/10 rounded flex items-center justify-center shrink-0">
-                <Clock size={20} className="text-red" />
-              </div>
-              <div>
-                <h3 className="font-semibold text-[#1a1f2e] mb-1">Hours</h3>
-                <p className="text-xs text-gray-400 italic">[Operating hours — to be added]</p>
-              </div>
-            </div>
-
-            {/* Team */}
+{/* Team */}
             <div className="flex items-start gap-4 p-5 border border-gray-200 rounded-lg">
               <div className="w-10 h-10 bg-red/10 rounded flex items-center justify-center shrink-0">
                 <Users size={20} className="text-red" />

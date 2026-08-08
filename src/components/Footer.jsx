@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom'
-import { Phone, MapPin, Clock } from 'lucide-react'
+import { Phone, MapPin } from 'lucide-react'
 
 export default function Footer() {
   return (
@@ -43,10 +43,6 @@ export default function Footer() {
             <li className="flex items-start gap-2">
               <MapPin size={15} className="text-red shrink-0 mt-0.5" />
               <span>East Texas</span>
-            </li>
-            <li className="flex items-start gap-2">
-              <Clock size={15} className="text-red shrink-0 mt-0.5" />
-              <span>[Hours — to be added]</span>
             </li>
           </ul>
         </div>

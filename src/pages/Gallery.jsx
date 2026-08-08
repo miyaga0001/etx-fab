@@ -1,25 +1,11 @@
 import { Link } from 'react-router-dom'
-import { ArrowRight, Camera } from 'lucide-react'
+import { ArrowRight } from 'lucide-react'
 
-const placeholderProjects = [
-  { title: '[Project title]', desc: '[Brief project description]', material: '[Material]', tag: 'CNC Machining' },
-  { title: '[Project title]', desc: '[Brief project description]', material: '[Material]', tag: 'Fabrication' },
-  { title: '[Project title]', desc: '[Brief project description]', material: '[Material]', tag: 'Welding' },
-  { title: '[Project title]', desc: '[Brief project description]', material: '[Material]', tag: 'Structural Steel' },
-  { title: '[Project title]', desc: '[Brief project description]', material: '[Material]', tag: 'Custom Parts' },
-  { title: '[Project title]', desc: '[Brief project description]', material: '[Material]', tag: 'Repair' },
-  { title: '[Project title]', desc: '[Brief project description]', material: '[Material]', tag: 'Fabrication' },
-  { title: '[Project title]', desc: '[Brief project description]', material: '[Material]', tag: 'CNC Machining' },
-]
-
-const tagColors = {
-  'CNC Machining': 'bg-blue-100 text-blue-700',
-  'Fabrication': 'bg-green-100 text-green-700',
-  'Welding': 'bg-red/10 text-red',
-  'Structural Steel': 'bg-gray-100 text-gray-700',
-  'Custom Parts': 'bg-purple-100 text-purple-700',
-  'Repair': 'bg-yellow-100 text-yellow-700',
-}
+const photos = Object.entries(
+  import.meta.glob('../assets/gallery/*.{jpg,jpeg,png,webp}', { eager: true })
+)
+  .sort(([a], [b]) => a.localeCompare(b, undefined, { numeric: true }))
+  .map(([, mod]) => mod.default)
 
 export default function Gallery() {
   return (
@@ -29,8 +15,7 @@ export default function Gallery() {
         <div className="max-w-6xl mx-auto px-4 sm:px-6">
           <h1 className="text-3xl sm:text-4xl font-bold mb-3">Our Work</h1>
           <p className="text-gray-300 text-lg max-w-2xl">
-            A sample of recent projects. Photos coming soon — check back or{' '}
-            <Link to="/quote" className="text-red hover:underline">reach out</Link> to talk about what we can do for you.
+            A sample of recent projects from the shop.
           </p>
         </div>
       </section>
@@ -38,27 +23,15 @@ export default function Gallery() {
       {/* Grid */}
       <section className="bg-white py-16">
         <div className="max-w-6xl mx-auto px-4 sm:px-6">
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5">
-            {placeholderProjects.map((project, i) => (
-              <div key={i} className="border border-gray-200 rounded-lg overflow-hidden">
-                {/* Photo placeholder */}
-                <div className="bg-gray-100 h-48 flex flex-col items-center justify-center gap-2">
-                  <Camera size={28} className="text-gray-300" />
-                  <span className="text-xs text-gray-400">Project photo coming soon</span>
-                </div>
-                {/* Info */}
-                <div className="p-4">
-                  <div className="flex items-start justify-between gap-2 mb-2">
-                    <h3 className="text-sm font-semibold text-[#1a1f2e]">{project.title}</h3>
-                    <span className={`text-xs px-2 py-0.5 rounded font-medium shrink-0 ${tagColors[project.tag] || 'bg-gray-100 text-gray-600'}`}>
-                      {project.tag}
-                    </span>
-                  </div>
-                  <p className="text-xs text-gray-500 mb-2">{project.desc}</p>
-                  <p className="text-xs text-gray-400">
-                    <span className="font-medium">Material:</span> {project.material}
-                  </p>
-                </div>
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+            {photos.map((src, i) => (
+              <div key={i} className="rounded-lg border border-gray-200 overflow-hidden bg-gray-50">
+                <img
+                  src={src}
+                  alt="Custom fabrication"
+                  loading="lazy"
+                  className="w-full h-64 object-cover"
+                />
               </div>
             ))}
           </div>
