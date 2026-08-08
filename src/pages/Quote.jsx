@@ -2,7 +2,7 @@ import { useState, useRef } from 'react'
 import { Phone, Upload, CheckCircle2, X } from 'lucide-react'
 
 // Public Web3Forms access key — safe to include in client code
-const ACCESS_KEY = '<PASTE-YOUR-WEB3FORMS-KEY-HERE>'
+const ACCESS_KEY = 'd3270f23-8f7b-43d8-94dd-ac16b0c108b4'
 
 const WEB3_ENDPOINT = 'https://api.web3forms.com/submit'
 const FILE_SIZE_LIMIT = 20 * 1024 * 1024 // 20 MB
