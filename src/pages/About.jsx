@@ -19,10 +19,10 @@ export default function About() {
         <div className="max-w-6xl mx-auto px-4 sm:px-6 grid grid-cols-1 lg:grid-cols-2 gap-12">
           <div>
             <h2 className="text-2xl font-bold text-[#1a1f2e] mb-4">Our story</h2>
-            <div className="text-gray-600 leading-relaxed space-y-4 italic">
-              <p>[Company history and story — to be written]</p>
-              <p>[Founding, background, what makes the shop unique]</p>
-              <p>[Years in business, experience, types of customers served]</p>
+            <div className="text-gray-600 leading-relaxed space-y-4">
+              <p>ETX Fabrication &amp; Machine is a full-service precision welding and custom metal fabrication shop located in Longview, Texas. We serve all of East Texas with expert MIG welding, TIG welding, precision lathe work, metal fabrication, brazing, drilling, boring, and custom fixtures and jigs.</p>
+              <p>Backed by years of experience and certified welders, we deliver high-quality craftsmanship, fast turnaround, and fair, competitive pricing — whether it's a one-off repair, a prototype, or a large production run.</p>
+              <p>As a premier fabrication shop in Longview, we take pride in turning your complex designs into reality.</p>
             </div>
           </div>
 
@@ -35,7 +35,7 @@ export default function About() {
               <div>
                 <h3 className="font-semibold text-[#1a1f2e] mb-1">Location</h3>
                 <p className="text-sm text-gray-500">East Texas</p>
-                <p className="text-xs text-gray-400 mt-1 italic">[Full address — to be added]</p>
+                <p className="text-xs text-gray-400 mt-1">505 E Cotton St, Longview, TX 75601</p>
               </div>
             </div>
 
