@@ -15,7 +15,7 @@ const placeholderProjects = [
 const tagColors = {
   'CNC Machining': 'bg-blue-100 text-blue-700',
   'Fabrication': 'bg-green-100 text-green-700',
-  'Welding': 'bg-orange-100 text-orange-700',
+  'Welding': 'bg-red/10 text-red',
   'Structural Steel': 'bg-gray-100 text-gray-700',
   'Custom Parts': 'bg-purple-100 text-purple-700',
   'Repair': 'bg-yellow-100 text-yellow-700',
@@ -30,7 +30,7 @@ export default function Gallery() {
           <h1 className="text-3xl sm:text-4xl font-bold mb-3">Our Work</h1>
           <p className="text-gray-300 text-lg max-w-2xl">
             A sample of recent projects. Photos coming soon — check back or{' '}
-            <Link to="/quote" className="text-[#e67e22] hover:underline">reach out</Link> to talk about what we can do for you.
+            <Link to="/quote" className="text-red hover:underline">reach out</Link> to talk about what we can do for you.
           </p>
         </div>
       </section>
@@ -72,7 +72,7 @@ export default function Gallery() {
           <p className="text-gray-500 mb-6">Send us the details and we'll put together a quote.</p>
           <Link
             to="/quote"
-            className="inline-flex items-center gap-2 bg-[#e67e22] hover:bg-[#cf6d17] text-white font-semibold px-7 py-3 rounded transition-colors"
+            className="inline-flex items-center gap-2 bg-red hover:bg-red-bright text-white font-semibold px-7 py-3 rounded transition-colors"
           >
             Request a quote <ArrowRight size={18} />
           </Link>

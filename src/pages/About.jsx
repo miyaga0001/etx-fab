@@ -29,8 +29,8 @@ export default function About() {
           <div className="space-y-6">
             {/* Location */}
             <div className="flex items-start gap-4 p-5 border border-gray-200 rounded-lg">
-              <div className="w-10 h-10 bg-[#e67e22]/10 rounded flex items-center justify-center shrink-0">
-                <MapPin size={20} className="text-[#e67e22]" />
+              <div className="w-10 h-10 bg-red/10 rounded flex items-center justify-center shrink-0">
+                <MapPin size={20} className="text-red" />
               </div>
               <div>
                 <h3 className="font-semibold text-[#1a1f2e] mb-1">Location</h3>
@@ -41,8 +41,8 @@ export default function About() {
 
             {/* Hours */}
             <div className="flex items-start gap-4 p-5 border border-gray-200 rounded-lg">
-              <div className="w-10 h-10 bg-[#e67e22]/10 rounded flex items-center justify-center shrink-0">
-                <Clock size={20} className="text-[#e67e22]" />
+              <div className="w-10 h-10 bg-red/10 rounded flex items-center justify-center shrink-0">
+                <Clock size={20} className="text-red" />
               </div>
               <div>
                 <h3 className="font-semibold text-[#1a1f2e] mb-1">Hours</h3>
@@ -52,8 +52,8 @@ export default function About() {
 
             {/* Team */}
             <div className="flex items-start gap-4 p-5 border border-gray-200 rounded-lg">
-              <div className="w-10 h-10 bg-[#e67e22]/10 rounded flex items-center justify-center shrink-0">
-                <Users size={20} className="text-[#e67e22]" />
+              <div className="w-10 h-10 bg-red/10 rounded flex items-center justify-center shrink-0">
+                <Users size={20} className="text-red" />
               </div>
               <div>
                 <h3 className="font-semibold text-[#1a1f2e] mb-1">The team</h3>
@@ -84,7 +84,7 @@ export default function About() {
               },
             ].map(({ heading, body }) => (
               <div key={heading} className="bg-white border border-gray-200 rounded-lg p-6">
-                <div className="w-2 h-8 bg-[#e67e22] rounded mb-4" />
+                <div className="w-2 h-8 bg-red rounded mb-4" />
                 <h3 className="font-bold text-[#1a1f2e] mb-2">{heading}</h3>
                 <p className="text-sm text-gray-600 leading-relaxed">{body}</p>
               </div>
@@ -102,7 +102,7 @@ export default function About() {
           </div>
           <Link
             to="/quote"
-            className="bg-[#e67e22] hover:bg-[#cf6d17] text-white font-semibold px-8 py-3 rounded transition-colors shrink-0 flex items-center gap-2"
+            className="bg-red hover:bg-red-bright text-white font-semibold px-8 py-3 rounded transition-colors shrink-0 flex items-center gap-2"
           >
             Get a quote <ArrowRight size={18} />
           </Link>

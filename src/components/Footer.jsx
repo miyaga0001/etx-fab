@@ -8,7 +8,7 @@ export default function Footer() {
         {/* Brand */}
         <div>
           <div className="text-white font-bold text-lg tracking-wide">ETX FAB</div>
-          <div className="text-[#e67e22] text-xs font-medium tracking-widest uppercase mb-3">& Machine</div>
+          <div className="text-red text-xs font-medium tracking-widest uppercase mb-3">& Machine</div>
           <p className="text-sm leading-relaxed">
             Precision fabrication and machining in East Texas. Locally owned and operated.
           </p>
@@ -37,15 +37,15 @@ export default function Footer() {
           <h3 className="text-white text-sm font-semibold uppercase tracking-wider mb-4">Contact</h3>
           <ul className="space-y-3 text-sm">
             <li className="flex items-center gap-2">
-              <Phone size={15} className="text-[#e67e22] shrink-0" />
+              <Phone size={15} className="text-red shrink-0" />
               <span>(903) [XXX-XXXX]</span>
             </li>
             <li className="flex items-start gap-2">
-              <MapPin size={15} className="text-[#e67e22] shrink-0 mt-0.5" />
+              <MapPin size={15} className="text-red shrink-0 mt-0.5" />
               <span>East Texas</span>
             </li>
             <li className="flex items-start gap-2">
-              <Clock size={15} className="text-[#e67e22] shrink-0 mt-0.5" />
+              <Clock size={15} className="text-red shrink-0 mt-0.5" />
               <span>[Hours — to be added]</span>
             </li>
           </ul>

@@ -30,13 +30,13 @@ export default function Quote() {
     return (
       <div className="min-h-[60vh] flex items-center justify-center bg-white px-4">
         <div className="text-center max-w-md">
-          <CheckCircle2 size={48} className="text-[#e67e22] mx-auto mb-4" />
+          <CheckCircle2 size={48} className="text-red mx-auto mb-4" />
           <h2 className="text-2xl font-bold text-[#1a1f2e] mb-3">Quote request received</h2>
           <p className="text-gray-500">
             We'll review your project details and get back to you shortly. If you need to reach us sooner, give us a call.
           </p>
           <div className="flex items-center justify-center gap-2 mt-4 text-[#1a1f2e]">
-            <Phone size={16} className="text-[#e67e22]" />
+            <Phone size={16} className="text-red" />
             <span className="font-medium">(903) [XXX-XXXX]</span>
           </div>
         </div>
@@ -64,7 +64,7 @@ export default function Quote() {
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
               <div>
                 <label className="block text-sm font-medium text-[#1a1f2e] mb-1.5">
-                  Name <span className="text-[#e67e22]">*</span>
+                  Name <span className="text-red">*</span>
                 </label>
                 <input
                   type="text"
@@ -73,12 +73,12 @@ export default function Quote() {
                   value={form.name}
                   onChange={handleChange}
                   placeholder="Your name"
-                  className="w-full border border-gray-300 rounded px-3 py-2.5 text-sm focus:outline-none focus:border-[#e67e22] focus:ring-1 focus:ring-[#e67e22] transition-colors"
+                  className="w-full border border-gray-300 rounded px-3 py-2.5 text-sm focus:outline-none focus:border-red focus:ring-1 focus:ring-red transition-colors"
                 />
               </div>
               <div>
                 <label className="block text-sm font-medium text-[#1a1f2e] mb-1.5">
-                  Email <span className="text-[#e67e22]">*</span>
+                  Email <span className="text-red">*</span>
                 </label>
                 <input
                   type="email"
@@ -87,7 +87,7 @@ export default function Quote() {
                   value={form.email}
                   onChange={handleChange}
                   placeholder="you@company.com"
-                  className="w-full border border-gray-300 rounded px-3 py-2.5 text-sm focus:outline-none focus:border-[#e67e22] focus:ring-1 focus:ring-[#e67e22] transition-colors"
+                  className="w-full border border-gray-300 rounded px-3 py-2.5 text-sm focus:outline-none focus:border-red focus:ring-1 focus:ring-red transition-colors"
                 />
               </div>
             </div>
@@ -103,14 +103,14 @@ export default function Quote() {
                 value={form.phone}
                 onChange={handleChange}
                 placeholder="(903) 555-0100"
-                className="w-full border border-gray-300 rounded px-3 py-2.5 text-sm focus:outline-none focus:border-[#e67e22] focus:ring-1 focus:ring-[#e67e22] transition-colors"
+                className="w-full border border-gray-300 rounded px-3 py-2.5 text-sm focus:outline-none focus:border-red focus:ring-1 focus:ring-red transition-colors"
               />
             </div>
 
             {/* Project description */}
             <div>
               <label className="block text-sm font-medium text-[#1a1f2e] mb-1.5">
-                Project description <span className="text-[#e67e22]">*</span>
+                Project description <span className="text-red">*</span>
               </label>
               <textarea
                 name="description"
@@ -119,7 +119,7 @@ export default function Quote() {
                 onChange={handleChange}
                 rows={5}
                 placeholder="Describe what you need. Include dimensions, tolerances, finish requirements, or anything else that matters."
-                className="w-full border border-gray-300 rounded px-3 py-2.5 text-sm focus:outline-none focus:border-[#e67e22] focus:ring-1 focus:ring-[#e67e22] transition-colors resize-vertical"
+                className="w-full border border-gray-300 rounded px-3 py-2.5 text-sm focus:outline-none focus:border-red focus:ring-1 focus:ring-red transition-colors resize-vertical"
               />
             </div>
 
@@ -145,7 +145,7 @@ export default function Quote() {
                   name="material"
                   value={form.material}
                   onChange={handleChange}
-                  className="w-full border border-gray-300 rounded px-3 py-2.5 text-sm focus:outline-none focus:border-[#e67e22] focus:ring-1 focus:ring-[#e67e22] transition-colors bg-white"
+                  className="w-full border border-gray-300 rounded px-3 py-2.5 text-sm focus:outline-none focus:border-red focus:ring-1 focus:ring-red transition-colors bg-white"
                 >
                   <option value="">Select material</option>
                   {materials.map((m) => (
@@ -163,7 +163,7 @@ export default function Quote() {
                   value={form.quantity}
                   onChange={handleChange}
                   placeholder="e.g. 1, 25, 100+"
-                  className="w-full border border-gray-300 rounded px-3 py-2.5 text-sm focus:outline-none focus:border-[#e67e22] focus:ring-1 focus:ring-[#e67e22] transition-colors"
+                  className="w-full border border-gray-300 rounded px-3 py-2.5 text-sm focus:outline-none focus:border-red focus:ring-1 focus:ring-red transition-colors"
                 />
               </div>
             </div>
@@ -177,7 +177,7 @@ export default function Quote() {
                 name="timeline"
                 value={form.timeline}
                 onChange={handleChange}
-                className="w-full border border-gray-300 rounded px-3 py-2.5 text-sm focus:outline-none focus:border-[#e67e22] focus:ring-1 focus:ring-[#e67e22] transition-colors bg-white"
+                className="w-full border border-gray-300 rounded px-3 py-2.5 text-sm focus:outline-none focus:border-red focus:ring-1 focus:ring-red transition-colors bg-white"
               >
                 <option value="">Select timeline</option>
                 {timelines.map((t) => (
@@ -189,7 +189,7 @@ export default function Quote() {
             {/* Submit */}
             <button
               type="submit"
-              className="w-full bg-[#e67e22] hover:bg-[#cf6d17] text-white font-semibold py-3 px-6 rounded transition-colors text-sm"
+              className="w-full bg-red hover:bg-red-bright text-white font-semibold py-3 px-6 rounded transition-colors text-sm"
             >
               Send quote request
             </button>
@@ -198,9 +198,9 @@ export default function Quote() {
           {/* Phone fallback */}
           <div className="mt-8 pt-6 border-t border-gray-100 text-center">
             <p className="text-sm text-gray-500 flex items-center justify-center gap-2">
-              <Phone size={15} className="text-[#e67e22]" />
+              <Phone size={15} className="text-red" />
               Prefer to call?{' '}
-              <a href="tel:+1903XXXXXXX" className="text-[#1a1f2e] font-medium hover:text-[#e67e22] transition-colors">
+              <a href="tel:+1903XXXXXXX" className="text-[#1a1f2e] font-medium hover:text-red transition-colors">
                 (903) [XXX-XXXX]
               </a>
             </p>

@@ -229,7 +229,7 @@ export default function Home() {
             {differentiators.map(({ title, desc }) => (
               <div key={title} className="flex flex-col gap-3">
                 <div className="flex items-center gap-2">
-                  <CheckCircle2 size={20} className="text-[#e67e22] shrink-0" />
+                  <CheckCircle2 size={20} className="text-red shrink-0" />
                   <h3 className="font-bold text-[#1a1f2e] text-lg">{title}</h3>
                 </div>
                 <p className="text-gray-600 text-sm leading-relaxed">{desc}</p>
@@ -248,7 +248,7 @@ export default function Home() {
           </div>
           <Link
             to="/quote"
-            className="bg-[#e67e22] hover:bg-[#cf6d17] text-white font-semibold px-8 py-3 rounded transition-colors shrink-0 flex items-center gap-2"
+            className="bg-red hover:bg-red-bright text-white font-semibold px-8 py-3 rounded transition-colors shrink-0 flex items-center gap-2"
           >
             Get a free quote <ArrowRight size={18} />
           </Link>

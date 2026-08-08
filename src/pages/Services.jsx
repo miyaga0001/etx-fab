@@ -65,8 +65,8 @@ export default function Services() {
           {services.map(({ icon: Icon, title, desc, materials, applications }) => (
             <div key={title} className="border border-gray-200 rounded-lg p-6 sm:p-8">
               <div className="flex items-center gap-3 mb-4">
-                <div className="w-10 h-10 bg-[#e67e22]/10 rounded flex items-center justify-center shrink-0">
-                  <Icon size={20} className="text-[#e67e22]" />
+                <div className="w-10 h-10 bg-red/10 rounded flex items-center justify-center shrink-0">
+                  <Icon size={20} className="text-red" />
                 </div>
                 <h2 className="text-xl font-bold text-[#1a1f2e]">{title}</h2>
               </div>
@@ -77,7 +77,7 @@ export default function Services() {
                   <ul className="space-y-1">
                     {materials.map((m) => (
                       <li key={m} className="text-sm text-gray-700 flex items-center gap-2">
-                        <span className="w-1.5 h-1.5 bg-[#e67e22] rounded-full shrink-0" />
+                        <span className="w-1.5 h-1.5 bg-red rounded-full shrink-0" />
                         {m}
                       </li>
                     ))}
@@ -88,7 +88,7 @@ export default function Services() {
                   <ul className="space-y-1">
                     {applications.map((a) => (
                       <li key={a} className="text-sm text-gray-700 flex items-center gap-2">
-                        <span className="w-1.5 h-1.5 bg-[#e67e22] rounded-full shrink-0" />
+                        <span className="w-1.5 h-1.5 bg-red rounded-full shrink-0" />
                         {a}
                       </li>
                     ))}
@@ -119,7 +119,7 @@ export default function Services() {
           </div>
           <Link
             to="/quote"
-            className="bg-[#e67e22] hover:bg-[#cf6d17] text-white font-semibold px-8 py-3 rounded transition-colors shrink-0 flex items-center gap-2"
+            className="bg-red hover:bg-red-bright text-white font-semibold px-8 py-3 rounded transition-colors shrink-0 flex items-center gap-2"
           >
             Request a quote <ArrowRight size={18} />
           </Link>
