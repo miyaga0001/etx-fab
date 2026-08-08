@@ -13,6 +13,9 @@ import {
   Clock,
   Check,
 } from 'lucide-react'
+import work1 from '../assets/work/work-1.jpg'
+import work2 from '../assets/work/work-2.jpg'
+import work3 from '../assets/work/work-3.jpg'
 
 const capabilities = [
   {
@@ -62,16 +65,26 @@ const differentiators = [
   },
 ]
 
-function PhotoPlaceholder({ label, className = '' }) {
+function PhotoPlaceholder({ label, src, alt, className = '' }) {
   return (
     <div
-      className={`relative rounded-[14px] border border-white/10 overflow-hidden flex flex-col items-center justify-center gap-2.5 ${className}`}
-      style={{ background: 'linear-gradient(145deg, #1c2535 0%, #141c28 60%, #1a2232 100%)' }}
+      className={`relative rounded-[14px] border border-white/10 overflow-hidden ${className}`}
+      style={!src ? { background: 'linear-gradient(145deg, #1c2535 0%, #141c28 60%, #1a2232 100%)' } : undefined}
     >
-      <Camera size={20} className="text-white/20" />
-      <div className="text-center px-3">
-        <p className="text-xs text-white/40 font-medium">{label}</p>
-        <p className="text-[10px] text-white/20 mt-0.5">[replace with real shop photo]</p>
+      {src ? (
+        <img src={src} alt={alt || label} className="w-full h-full object-cover" />
+      ) : (
+        <div className="absolute inset-0 flex flex-col items-center justify-center gap-2.5">
+          <Camera size={20} className="text-white/20" />
+          <div className="text-center px-3">
+            <p className="text-xs text-white/40 font-medium">{label}</p>
+            <p className="text-[10px] text-white/20 mt-0.5">[replace with real shop photo]</p>
+          </div>
+        </div>
+      )}
+      {/* Caption overlay */}
+      <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/50 to-transparent px-3 py-2 pointer-events-none">
+        <span className="text-[10px] text-white/75 font-medium">{label}</span>
       </div>
     </div>
   )
@@ -83,7 +96,7 @@ export default function Home() {
 
       {/* ── Hero ─────────────────────────────────────────────── */}
       <section className="bg-navy-deep text-white">
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 py-16 sm:py-24 grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 py-10 sm:py-14 grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-14 items-center">
 
           {/* Left: copy */}
           <div>
@@ -148,14 +161,29 @@ export default function Home() {
           </div>
 
           {/* Right: photo grid */}
-          <div className="flex flex-col gap-3">
-            <div className="grid grid-cols-2 gap-3">
-              {/* Left tile: tall, spans full column height */}
-              <PhotoPlaceholder label="Lathe / turning" className="h-72 sm:h-80" />
+          <div className="flex flex-col gap-3 lg:h-[500px]">
+            <div className="grid grid-cols-2 gap-3 flex-1">
+              {/* Left tile: portrait, spans full column height */}
+              <PhotoPlaceholder
+                label="Custom fabrication"
+                src={work1}
+                alt="Custom metal fabrication"
+                className="h-full min-h-[280px]"
+              />
               {/* Right column: two stacked */}
               <div className="flex flex-col gap-3">
-                <PhotoPlaceholder label="TIG weld bead" className="flex-1 min-h-[130px]" />
-                <PhotoPlaceholder label="Precision milling" className="flex-1 min-h-[130px]" />
+                <PhotoPlaceholder
+                  label="Precision machining"
+                  src={work2}
+                  alt="Precision machining"
+                  className="flex-1 min-h-[120px]"
+                />
+                <PhotoPlaceholder
+                  label="Metalwork & welding"
+                  src={work3}
+                  alt="Metalwork and welding"
+                  className="flex-1 min-h-[120px]"
+                />
               </div>
             </div>
             <div className="flex justify-center">
