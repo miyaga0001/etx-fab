@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom'
-import { Phone, MapPin } from 'lucide-react'
+import { Phone, MapPin, Mail, MessageSquare } from 'lucide-react'
 
 export default function Footer() {
   return (
@@ -36,13 +36,24 @@ export default function Footer() {
         <div>
           <h3 className="text-white text-sm font-semibold uppercase tracking-wider mb-4">Contact</h3>
           <ul className="space-y-3 text-sm">
+            <li className="flex items-start gap-2">
+              <Phone size={15} className="text-red shrink-0 mt-0.5" />
+              <div className="flex flex-col gap-0.5">
+                <a href="tel:19036869895" className="hover:text-white transition-colors">(903) 686-9895</a>
+                <a href="sms:19036869895" className="text-xs text-gray-500 hover:text-gray-300 transition-colors flex items-center gap-1">
+                  <MessageSquare size={11} /> Text us
+                </a>
+              </div>
+            </li>
             <li className="flex items-center gap-2">
-              <Phone size={15} className="text-red shrink-0" />
-              <a href="tel:19036869895" className="hover:text-white transition-colors">(903) 686-9895</a>
+              <Mail size={15} className="text-red shrink-0" />
+              <a href="mailto:info@etxfabandmachine.com" className="hover:text-white transition-colors">
+                info@etxfabandmachine.com
+              </a>
             </li>
             <li className="flex items-start gap-2">
               <MapPin size={15} className="text-red shrink-0 mt-0.5" />
-              <span>East Texas</span>
+              <span>505 E Cotton St, Longview TX 75601</span>
             </li>
           </ul>
         </div>
