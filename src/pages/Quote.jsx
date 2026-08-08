@@ -5,10 +5,49 @@ import { Phone, Upload, CheckCircle2, X } from 'lucide-react'
 const ACCESS_KEY = 'd3270f23-8f7b-43d8-94dd-ac16b0c108b4'
 
 const WEB3_ENDPOINT = 'https://api.web3forms.com/submit'
-const FILE_SIZE_LIMIT = 20 * 1024 * 1024 // 20 MB
+const FILE_ATTACH_LIMIT = 5 * 1024 * 1024 // 5 MB — above this we note it instead of attaching
 
+const serviceTypes = [
+  'CNC Machining',
+  'Metal Fabrication',
+  'Welding',
+  'Custom Parts / Prototypes',
+  'Structural Steel',
+  'Repair & Maintenance',
+  'Other / Not sure',
+]
 const materials = ['Steel', 'Aluminum', 'Stainless Steel', 'Other']
 const timelines = ['No rush', 'Within 2 weeks', 'Within 1 week', 'ASAP']
+
+function fileSizeLabel(bytes) {
+  return bytes >= 1024 * 1024
+    ? `${(bytes / 1024 / 1024).toFixed(1)} MB`
+    : `${Math.round(bytes / 1024)} KB`
+}
+
+function buildFormData(form, description) {
+  const data = new FormData()
+  data.append('access_key', ACCESS_KEY)
+  data.append('subject', 'New quote request — ETX website')
+  data.append('botcheck', '')           // honeypot — must be empty
+  data.append('replyto', form.email)   // replies go straight to the customer
+  data.append('name', form.name)
+  data.append('email', form.email)
+  if (form.phone)       data.append('phone', form.phone)
+  if (form.company)     data.append('company', form.company)
+  if (form.serviceType) data.append('service_type', form.serviceType)
+  if (form.material)    data.append('material', form.material)
+  if (form.quantity)    data.append('quantity', form.quantity)
+  if (form.timeline)    data.append('timeline', form.timeline)
+  data.append('description', description)
+  return data
+}
+
+async function postData(data) {
+  const res = await fetch(WEB3_ENDPOINT, { method: 'POST', body: data })
+  const json = await res.json()
+  if (!json.success) throw new Error(json.message || 'Submission failed')
+}
 
 export default function Quote() {
   const [submitted, setSubmitted] = useState(false)
@@ -19,6 +58,8 @@ export default function Quote() {
     name: '',
     email: '',
     phone: '',
+    company: '',
+    serviceType: '',
     description: '',
     material: '',
     quantity: '',
@@ -31,8 +72,7 @@ export default function Quote() {
   }
 
   const handleFileChange = (e) => {
-    const f = e.target.files?.[0] ?? null
-    setFile(f)
+    setFile(e.target.files?.[0] ?? null)
   }
 
   const handleSubmit = async (e) => {
@@ -40,43 +80,31 @@ export default function Quote() {
     setLoading(true)
     setError('')
 
-    const data = new FormData()
-    data.append('access_key', ACCESS_KEY)
-    data.append('subject', 'New quote request — ETX website')
-    data.append('botcheck', '') // honeypot — must be empty
+    const drawingNote = file
+      ? `\n\nNOTE: Customer attached a drawing (${file.name}, ${fileSizeLabel(file.size)}) too large for the form — follow up to request it by email.`
+      : null
 
-    data.append('name', form.name)
-    data.append('email', form.email)
-    if (form.phone) data.append('phone', form.phone)
-    if (form.material) data.append('material', form.material)
-    if (form.quantity) data.append('quantity', form.quantity)
-    if (form.timeline) data.append('timeline', form.timeline)
-
-    // Attach file or append a note if it can't go through
-    let description = form.description
-    if (file) {
-      if (file.size > FILE_SIZE_LIMIT) {
-        description += `\n\n[Drawing "${file.name}" exceeded the upload size limit — please email it to info@etxfabandmachine.com]`
-      } else {
-        try {
-          data.append('attachment', file, file.name)
-        } catch {
-          description += `\n\n[Drawing "${file.name}" could not be attached — please email it to info@etxfabandmachine.com]`
-        }
-      }
-    }
-    data.append('description', description)
+    const fileTooBig = file && file.size > FILE_ATTACH_LIMIT
 
     try {
-      const res = await fetch(WEB3_ENDPOINT, { method: 'POST', body: data })
-      const json = await res.json()
-      if (json.success) {
-        setSubmitted(true)
+      if (!file || fileTooBig) {
+        // No file, or file exceeds limit: send text-only with a note if applicable
+        const desc = fileTooBig ? form.description + drawingNote : form.description
+        await postData(buildFormData(form, desc))
       } else {
-        setError(json.message || 'Submission failed. Please call us directly.')
+        // File within limit: attempt with attachment; on any failure retry text-only
+        try {
+          const data = buildFormData(form, form.description)
+          data.append('attachment', file, file.name)
+          await postData(data)
+        } catch {
+          // Attachment attempt failed — retry without file so the quote still gets through
+          await postData(buildFormData(form, form.description + drawingNote))
+        }
       }
+      setSubmitted(true)
     } catch {
-      setError('Could not reach the server. Please call us directly.')
+      setError('Could not send your request. Please call us directly.')
     } finally {
       setLoading(false)
     }
@@ -151,19 +179,52 @@ export default function Quote() {
               </div>
             </div>
 
-            {/* Phone */}
+            {/* Phone + Company */}
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
+              <div>
+                <label className="block text-sm font-medium text-[#1a1f2e] mb-1.5">
+                  Phone <span className="text-gray-400 font-normal">(optional)</span>
+                </label>
+                <input
+                  type="tel"
+                  name="phone"
+                  value={form.phone}
+                  onChange={handleChange}
+                  placeholder="(903) 555-0100"
+                  className="w-full border border-gray-300 rounded px-3 py-2.5 text-sm focus:outline-none focus:border-red focus:ring-1 focus:ring-red transition-colors"
+                />
+              </div>
+              <div>
+                <label className="block text-sm font-medium text-[#1a1f2e] mb-1.5">
+                  Company <span className="text-gray-400 font-normal">(optional)</span>
+                </label>
+                <input
+                  type="text"
+                  name="company"
+                  value={form.company}
+                  onChange={handleChange}
+                  placeholder="Your company"
+                  className="w-full border border-gray-300 rounded px-3 py-2.5 text-sm focus:outline-none focus:border-red focus:ring-1 focus:ring-red transition-colors"
+                />
+              </div>
+            </div>
+
+            {/* Service type */}
             <div>
               <label className="block text-sm font-medium text-[#1a1f2e] mb-1.5">
-                Phone <span className="text-gray-400 font-normal">(optional)</span>
+                Service type <span className="text-gray-400 font-normal">(optional)</span>
               </label>
-              <input
-                type="tel"
-                name="phone"
-                value={form.phone}
+              <select
+                name="serviceType"
+                value={form.serviceType}
                 onChange={handleChange}
-                placeholder="(903) 555-0100"
-                className="w-full border border-gray-300 rounded px-3 py-2.5 text-sm focus:outline-none focus:border-red focus:ring-1 focus:ring-red transition-colors"
-              />
+                className="w-full border border-gray-300 rounded px-3 py-2.5 text-sm focus:outline-none focus:border-red focus:ring-1 focus:ring-red transition-colors bg-white"
+              >
+                <option value="">Select service</option>
+                {serviceTypes.map((s) => (
+                  <option key={s} value={s}>{s}</option>
+                ))}
+              </select>
             </div>
 
             {/* Project description */}
@@ -214,7 +275,7 @@ export default function Quote() {
                 >
                   <Upload size={24} className="mx-auto text-gray-300 mb-2" />
                   <p className="text-sm text-gray-400">Click to attach a file</p>
-                  <p className="text-xs text-gray-300 mt-1">PDF, DXF, DWG, STEP, JPG, PNG — max 20 MB</p>
+                  <p className="text-xs text-gray-300 mt-1">PDF, DXF, DWG, STEP, JPG, PNG — up to 5 MB</p>
                 </button>
               )}
             </div>
