@@ -37,7 +37,7 @@ export default function Quote() {
           </p>
           <div className="flex items-center justify-center gap-2 mt-4 text-[#1a1f2e]">
             <Phone size={16} className="text-red" />
-            <span className="font-medium">(903) [XXX-XXXX]</span>
+            <span className="font-medium">(903) 686-9895</span>
           </div>
         </div>
       </div>
@@ -200,8 +200,8 @@ export default function Quote() {
             <p className="text-sm text-gray-500 flex items-center justify-center gap-2">
               <Phone size={15} className="text-red" />
               Prefer to call?{' '}
-              <a href="tel:+1903XXXXXXX" className="text-[#1a1f2e] font-medium hover:text-red transition-colors">
-                (903) [XXX-XXXX]
+              <a href="tel:19036869895" className="text-[#1a1f2e] font-medium hover:text-red transition-colors">
+                (903) 686-9895
               </a>
             </p>
           </div>
