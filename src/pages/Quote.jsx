@@ -1,11 +1,10 @@
-import { useState, useRef } from 'react'
-import { Phone, Upload, CheckCircle2, X, MessageSquare } from 'lucide-react'
+import { useState } from 'react'
+import { Phone, CheckCircle2, MessageSquare } from 'lucide-react'
 
 // Public Web3Forms access key — safe to include in client code
 const ACCESS_KEY = 'd3270f23-8f7b-43d8-94dd-ac16b0c108b4'
 
 const WEB3_ENDPOINT = 'https://api.web3forms.com/submit'
-const FILE_ATTACH_LIMIT = 5 * 1024 * 1024 // 5 MB — above this we note it instead of attaching
 
 const serviceTypes = [
   'CNC Machining',
@@ -18,12 +17,6 @@ const serviceTypes = [
 ]
 const materials = ['Steel', 'Aluminum', 'Stainless Steel', 'Other']
 const timelines = ['No rush', 'Within 2 weeks', 'Within 1 week', 'ASAP']
-
-function fileSizeLabel(bytes) {
-  return bytes >= 1024 * 1024
-    ? `${(bytes / 1024 / 1024).toFixed(1)} MB`
-    : `${Math.round(bytes / 1024)} KB`
-}
 
 function buildFormData(form, description) {
   const data = new FormData()
@@ -61,7 +54,6 @@ export default function Quote() {
   const [submitted, setSubmitted] = useState(false)
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState('')
-  const [file, setFile] = useState(null)
   const [form, setForm] = useState({
     name: '',
     email: '',
@@ -73,43 +65,17 @@ export default function Quote() {
     quantity: '',
     timeline: '',
   })
-  const fileInputRef = useRef(null)
 
   const handleChange = (e) => {
     setForm((prev) => ({ ...prev, [e.target.name]: e.target.value }))
-  }
-
-  const handleFileChange = (e) => {
-    setFile(e.target.files?.[0] ?? null)
   }
 
   const handleSubmit = async (e) => {
     e.preventDefault()
     setLoading(true)
     setError('')
-
-    const drawingNote = file
-      ? `\n\nNOTE: Customer attached a drawing (${file.name}, ${fileSizeLabel(file.size)}) too large for the form — follow up to request it by email.`
-      : null
-
-    const fileTooBig = file && file.size > FILE_ATTACH_LIMIT
-
     try {
-      if (!file || fileTooBig) {
-        // No file, or file exceeds limit: send text-only with a note if applicable
-        const desc = fileTooBig ? form.description + drawingNote : form.description
-        await postData(buildFormData(form, desc))
-      } else {
-        // File within limit: attempt with attachment; on any failure retry text-only
-        try {
-          const data = buildFormData(form, form.description)
-          data.append('attachment', file, file.name)
-          await postData(data)
-        } catch {
-          // Attachment attempt failed — retry without file so the quote still gets through
-          await postData(buildFormData(form, form.description + drawingNote))
-        }
-      }
+      await postData(buildFormData(form, form.description))
       setSubmitted(true)
     } catch {
       setError('Could not send your request. Please call us directly.')
@@ -252,41 +218,22 @@ export default function Quote() {
                 />
               </div>
 
-              {/* File upload */}
+              {/* Drawings / specs — honest note */}
               <div>
-                <label className={labelClass}>
+                <p className={labelClass}>
                   Drawings / specs <span className="text-gray-500 font-normal">(optional)</span>
-                </label>
-                <input
-                  ref={fileInputRef}
-                  type="file"
-                  accept=".pdf,.dxf,.dwg,.stp,.step,.jpg,.jpeg,.png"
-                  className="hidden"
-                  onChange={handleFileChange}
-                />
-                {file ? (
-                  <div className="border border-white/15 rounded-lg px-4 py-3 flex items-center justify-between gap-3 bg-navy">
-                    <span className="text-sm text-white truncate">{file.name}</span>
-                    <button
-                      type="button"
-                      onClick={() => { setFile(null); if (fileInputRef.current) fileInputRef.current.value = '' }}
-                      className="shrink-0 text-gray-500 hover:text-red transition-colors"
-                      aria-label="Remove file"
-                    >
-                      <X size={16} />
-                    </button>
-                  </div>
-                ) : (
-                  <button
-                    type="button"
-                    onClick={() => fileInputRef.current?.click()}
-                    className="w-full border-2 border-dashed border-white/20 rounded-lg p-8 text-center hover:border-white/40 transition-colors"
-                  >
-                    <Upload size={24} className="mx-auto text-gray-500 mb-2" />
-                    <p className="text-sm text-gray-400">Click to attach a file</p>
-                    <p className="text-xs text-gray-500 mt-1">PDF, DXF, DWG, STEP, JPG, PNG — up to 5 MB</p>
-                  </button>
-                )}
+                </p>
+                <p className="text-sm text-gray-400 leading-relaxed">
+                  Have a drawing or CAD file? Email it to{' '}
+                  <a href="mailto:info@etxfabandmachine.com" className="text-white hover:text-red transition-colors">
+                    info@etxfabandmachine.com
+                  </a>{' '}
+                  or text it to{' '}
+                  <a href="sms:19036869895" className="text-white hover:text-red transition-colors">
+                    (903) 686-9895
+                  </a>{' '}
+                  and we'll match it to your request.
+                </p>
               </div>
 
               {/* Material + Quantity */}
