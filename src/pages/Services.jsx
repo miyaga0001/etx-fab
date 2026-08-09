@@ -50,7 +50,7 @@ export default function Services() {
   return (
     <div>
       {/* Page header */}
-      <section className="bg-[#1a1f2e] text-white py-14">
+      <section className="bg-navy-deep text-white py-14">
         <div className="max-w-6xl mx-auto px-4 sm:px-6">
           <h1 className="text-3xl sm:text-4xl font-bold mb-3">Services</h1>
           <p className="text-gray-300 text-lg max-w-2xl">
@@ -60,23 +60,23 @@ export default function Services() {
       </section>
 
       {/* Services list */}
-      <section className="bg-white py-16">
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 space-y-12">
+      <section className="bg-navy py-16">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 space-y-6">
           {services.map(({ icon: Icon, title, desc, materials, applications }) => (
-            <div key={title} className="border border-gray-200 rounded-lg p-6 sm:p-8">
+            <div key={title} className="border border-white/10 rounded-lg p-6 sm:p-8 bg-navy-light">
               <div className="flex items-center gap-3 mb-4">
                 <div className="w-10 h-10 bg-red/10 rounded flex items-center justify-center shrink-0">
                   <Icon size={20} className="text-red" />
                 </div>
-                <h2 className="text-xl font-bold text-[#1a1f2e]">{title}</h2>
+                <h2 className="text-xl font-bold text-white">{title}</h2>
               </div>
-              <p className="text-gray-600 mb-6 leading-relaxed">{desc}</p>
+              <p className="text-gray-300 mb-6 leading-relaxed">{desc}</p>
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
                 <div>
                   <h3 className="text-xs font-semibold text-gray-400 uppercase tracking-wider mb-2">Materials</h3>
                   <ul className="space-y-1">
                     {materials.map((m) => (
-                      <li key={m} className="text-sm text-gray-700 flex items-center gap-2">
+                      <li key={m} className="text-sm text-gray-300 flex items-center gap-2">
                         <span className="w-1.5 h-1.5 bg-red rounded-full shrink-0" />
                         {m}
                       </li>
@@ -87,7 +87,7 @@ export default function Services() {
                   <h3 className="text-xs font-semibold text-gray-400 uppercase tracking-wider mb-2">Typical Applications</h3>
                   <ul className="space-y-1">
                     {applications.map((a) => (
-                      <li key={a} className="text-sm text-gray-700 flex items-center gap-2">
+                      <li key={a} className="text-sm text-gray-300 flex items-center gap-2">
                         <span className="w-1.5 h-1.5 bg-red rounded-full shrink-0" />
                         {a}
                       </li>
@@ -101,11 +101,11 @@ export default function Services() {
       </section>
 
       {/* Capabilities */}
-      <section className="bg-gray-50 py-14 border-t border-gray-100">
+      <section className="bg-navy-deep py-14 border-t border-white/5">
         <div className="max-w-6xl mx-auto px-4 sm:px-6">
-          <h2 className="text-2xl font-bold text-[#1a1f2e] mb-8">Capabilities</h2>
+          <h2 className="text-2xl font-bold text-white mb-8">Capabilities</h2>
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
-            <div className="bg-white border border-gray-200 rounded-lg p-6">
+            <div className="bg-navy-light border border-white/10 rounded-lg p-6">
               <h3 className="text-xs font-semibold text-gray-400 uppercase tracking-wider mb-4">Welding Services</h3>
               <ul className="space-y-3">
                 {[
@@ -115,14 +115,14 @@ export default function Services() {
                 ].map(([name, desc]) => (
                   <li key={name} className="flex items-start gap-3">
                     <span className="w-1.5 h-1.5 bg-red rounded-full shrink-0 mt-[7px]" />
-                    <span className="text-sm text-gray-700">
-                      <span className="font-semibold text-[#1a1f2e]">{name}</span> — {desc}
+                    <span className="text-sm text-gray-300">
+                      <span className="font-semibold text-white">{name}</span> — {desc}
                     </span>
                   </li>
                 ))}
               </ul>
             </div>
-            <div className="bg-white border border-gray-200 rounded-lg p-6">
+            <div className="bg-navy-light border border-white/10 rounded-lg p-6">
               <h3 className="text-xs font-semibold text-gray-400 uppercase tracking-wider mb-4">Machining Services</h3>
               <ul className="space-y-3">
                 {[
@@ -132,8 +132,8 @@ export default function Services() {
                 ].map(([name, desc]) => (
                   <li key={name} className="flex items-start gap-3">
                     <span className="w-1.5 h-1.5 bg-red rounded-full shrink-0 mt-[7px]" />
-                    <span className="text-sm text-gray-700">
-                      <span className="font-semibold text-[#1a1f2e]">{name}</span> — {desc}
+                    <span className="text-sm text-gray-300">
+                      <span className="font-semibold text-white">{name}</span> — {desc}
                     </span>
                   </li>
                 ))}
@@ -144,7 +144,7 @@ export default function Services() {
       </section>
 
       {/* CTA */}
-      <section className="bg-[#1a1f2e] py-14">
+      <section className="bg-navy py-14 border-t border-white/5">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 flex flex-col sm:flex-row items-center justify-between gap-6">
           <div>
             <h2 className="text-2xl font-bold text-white mb-1">Ready to get started?</h2>

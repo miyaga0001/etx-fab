@@ -198,11 +198,11 @@ export default function Home() {
       </section>
 
       {/* ── 3. WHAT WE DO ────────────────────────────────────────── */}
-      <section className="bg-gray-50 py-16 sm:py-20 border-b border-gray-100">
+      <section className="bg-navy py-16 sm:py-20 border-b border-white/5">
         <div className="max-w-6xl mx-auto px-4 sm:px-6">
           <div className="mb-10">
-            <h2 className="text-2xl sm:text-3xl font-bold text-navy mb-2">What we do</h2>
-            <p className="text-gray-500">
+            <h2 className="text-2xl sm:text-3xl font-bold text-white mb-2">What we do</h2>
+            <p className="text-gray-400">
               Full-service fabrication and machining.{' '}
               <Link to="/services" className="text-red hover:underline">See all services →</Link>
             </p>
@@ -212,10 +212,10 @@ export default function Home() {
               <Link
                 key={title}
                 to="/services"
-                className="group bg-white border border-gray-200 hover:border-red rounded-xl overflow-hidden transition-all duration-200 hover:shadow-lg hover:-translate-y-0.5"
+                className="group bg-navy-light border border-white/10 hover:border-red rounded-xl overflow-hidden transition-all duration-200 hover:shadow-lg hover:-translate-y-0.5"
               >
                 {galleryPhotos[photoIdx] && (
-                  <div className="h-36 overflow-hidden bg-gray-100">
+                  <div className="h-36 overflow-hidden bg-navy">
                     <img
                       src={galleryPhotos[photoIdx]}
                       alt={title}
@@ -229,9 +229,9 @@ export default function Home() {
                     <div className="w-8 h-8 bg-red/10 group-hover:bg-red/20 rounded flex items-center justify-center shrink-0 transition-colors">
                       <Icon size={16} className="text-red" />
                     </div>
-                    <h3 className="font-semibold text-navy">{title}</h3>
+                    <h3 className="font-semibold text-white">{title}</h3>
                   </div>
-                  <p className="text-sm text-gray-500 leading-relaxed">{desc}</p>
+                  <p className="text-sm text-gray-400 leading-relaxed">{desc}</p>
                 </div>
               </Link>
             ))}
@@ -240,7 +240,7 @@ export default function Home() {
       </section>
 
       {/* ── 4. GALLERY BAND ──────────────────────────────────────── */}
-      <section className="bg-navy py-14 sm:py-20">
+      <section className="bg-navy-deep py-14 sm:py-20">
         <div className="max-w-6xl mx-auto px-4 sm:px-6">
           <div className="flex items-end justify-between gap-4 mb-8">
             <h2 className="text-2xl sm:text-3xl font-bold text-white leading-tight">
@@ -269,20 +269,20 @@ export default function Home() {
       </section>
 
       {/* ── 5. HOW IT WORKS ──────────────────────────────────────── */}
-      <section className="bg-gray-50 py-16 sm:py-20 border-y border-gray-100">
+      <section className="bg-navy py-16 sm:py-20 border-y border-white/5">
         <div className="max-w-6xl mx-auto px-4 sm:px-6">
-          <h2 className="text-2xl sm:text-3xl font-bold text-navy mb-12">How it works</h2>
+          <h2 className="text-2xl sm:text-3xl font-bold text-white mb-12">How it works</h2>
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-8 sm:gap-6 relative">
             {/* Connector line — desktop only */}
-            <div className="hidden sm:block absolute top-6 left-[calc(100%/6)] right-[calc(100%/6)] h-px bg-gray-200" />
+            <div className="hidden sm:block absolute top-6 left-[calc(100%/6)] right-[calc(100%/6)] h-px bg-white/10" />
             {steps.map(({ icon: Icon, step, title, desc }) => (
               <div key={step} className="relative flex flex-col items-start sm:items-center sm:text-center">
                 <div className="relative z-10 w-12 h-12 rounded-full bg-red flex items-center justify-center mb-4 shrink-0">
                   <Icon size={20} className="text-white" />
                 </div>
                 <div className="text-xs text-red font-bold uppercase tracking-widest mb-1">Step {step}</div>
-                <h3 className="font-bold text-navy text-lg mb-2">{title}</h3>
-                <p className="text-sm text-gray-500 leading-relaxed max-w-xs">{desc}</p>
+                <h3 className="font-bold text-white text-lg mb-2">{title}</h3>
+                <p className="text-sm text-gray-400 leading-relaxed max-w-xs">{desc}</p>
               </div>
             ))}
           </div>
@@ -290,17 +290,17 @@ export default function Home() {
       </section>
 
       {/* ── 6. WHY ETX FAB ───────────────────────────────────────── */}
-      <section className="bg-white py-16 sm:py-20 border-b border-gray-100">
+      <section className="bg-navy-deep py-16 sm:py-20 border-b border-white/5">
         <div className="max-w-6xl mx-auto px-4 sm:px-6">
-          <h2 className="text-2xl sm:text-3xl font-bold text-navy mb-10">Why ETX Fab</h2>
+          <h2 className="text-2xl sm:text-3xl font-bold text-white mb-10">Why ETX Fab</h2>
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-8">
             {differentiators.map(({ title, desc }) => (
               <div key={title} className="flex flex-col gap-3">
                 <div className="flex items-center gap-2">
                   <CheckCircle2 size={20} className="text-red shrink-0" />
-                  <h3 className="font-bold text-navy text-lg">{title}</h3>
+                  <h3 className="font-bold text-white text-lg">{title}</h3>
                 </div>
-                <p className="text-gray-600 text-sm leading-relaxed">{desc}</p>
+                <p className="text-gray-300 text-sm leading-relaxed">{desc}</p>
               </div>
             ))}
           </div>
@@ -308,7 +308,7 @@ export default function Home() {
       </section>
 
       {/* ── 7. FOR BUSINESSES ────────────────────────────────────── */}
-      <section className="bg-navy-deep text-white py-16 sm:py-20">
+      <section className="bg-navy text-white py-16 sm:py-20">
         <div className="max-w-6xl mx-auto px-4 sm:px-6">
           <div className="max-w-2xl mb-10">
             <h2 className="text-2xl sm:text-3xl font-bold mb-4">Built for bigger jobs, too.</h2>
@@ -325,7 +325,7 @@ export default function Home() {
               { label: 'Estimates', value: 'Free, no obligation' },
               { label: 'Turnaround', value: 'Same-week on most jobs' },
             ].map(({ label, value }) => (
-              <div key={label} className="bg-navy border border-white/10 rounded-lg p-4">
+              <div key={label} className="bg-navy-light border border-white/10 rounded-lg p-4">
                 <div className="text-xs text-gray-400 uppercase tracking-wider mb-1">{label}</div>
                 <div className="text-sm text-white font-semibold">{value}</div>
               </div>
