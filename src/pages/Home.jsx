@@ -16,37 +16,31 @@ const capabilities = [
     icon: Settings2,
     title: 'CNC Machining',
     desc: 'Tight-tolerance parts machined to spec. Lathes, mills, and turning centers.',
-    photoIdx: 0,
   },
   {
     icon: Hammer,
     title: 'Metal Fabrication',
     desc: 'Custom cuts, bends, and assemblies in steel, aluminum, and stainless.',
-    photoIdx: 1,
   },
   {
     icon: Flame,
     title: 'Welding',
     desc: 'MIG, TIG, and stick welding. Structural and precision work.',
-    photoIdx: 2,
   },
   {
     icon: Wrench,
     title: 'Custom Parts & Prototypes',
     desc: 'One-off parts and prototype runs. We work from drawings, samples, or your idea.',
-    photoIdx: 3,
   },
   {
     icon: Building2,
     title: 'Structural Steel',
     desc: 'Frames, supports, brackets, and structural components for buildings and equipment.',
-    photoIdx: 4,
   },
   {
     icon: ShieldCheck,
     title: 'Repair & Maintenance',
     desc: 'Field repairs, worn part replacement, and machine restoration.',
-    photoIdx: 5,
   },
 ]
 
@@ -94,7 +88,7 @@ const steps = [
 ]
 
 export default function Home() {
-  const galleryBand = galleryPhotos.slice(0, 8)
+  const galleryBand = galleryPhotos.slice(0, 6)
 
   return (
     <div className="pb-20 md:pb-0">
@@ -197,7 +191,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* ── 3. WHAT WE DO ────────────────────────────────────────── */}
+      {/* ── 3. SERVICES OVERVIEW ─────────────────────────────────── */}
       <section className="bg-navy py-16 sm:py-20 border-b border-white/5">
         <div className="max-w-6xl mx-auto px-4 sm:px-6">
           <div className="mb-10">
@@ -207,30 +201,18 @@ export default function Home() {
               <Link to="/services" className="text-red hover:underline">See all services →</Link>
             </p>
           </div>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
-            {capabilities.map(({ icon: Icon, title, desc, photoIdx }) => (
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+            {capabilities.map(({ icon: Icon, title, desc }) => (
               <Link
                 key={title}
                 to="/services"
-                className="group bg-navy-light border border-white/10 hover:border-red rounded-xl overflow-hidden transition-all duration-200 hover:shadow-lg hover:-translate-y-0.5"
+                className="group flex items-start gap-4 bg-navy-light border border-white/10 hover:border-red rounded-xl p-5 transition-all duration-200"
               >
-                {galleryPhotos[photoIdx] && (
-                  <div className="h-36 overflow-hidden bg-navy">
-                    <img
-                      src={galleryPhotos[photoIdx]}
-                      alt={title}
-                      loading="lazy"
-                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
-                    />
-                  </div>
-                )}
-                <div className="p-5">
-                  <div className="flex items-center gap-3 mb-2">
-                    <div className="w-8 h-8 bg-red/10 group-hover:bg-red/20 rounded flex items-center justify-center shrink-0 transition-colors">
-                      <Icon size={16} className="text-red" />
-                    </div>
-                    <h3 className="font-semibold text-white">{title}</h3>
-                  </div>
+                <div className="w-9 h-9 bg-red/10 group-hover:bg-red/20 rounded flex items-center justify-center shrink-0 transition-colors mt-0.5">
+                  <Icon size={18} className="text-red" />
+                </div>
+                <div>
+                  <h3 className="font-semibold text-white mb-1">{title}</h3>
                   <p className="text-sm text-gray-400 leading-relaxed">{desc}</p>
                 </div>
               </Link>
@@ -239,8 +221,26 @@ export default function Home() {
         </div>
       </section>
 
-      {/* ── 4. GALLERY BAND ──────────────────────────────────────── */}
-      <section className="bg-navy-deep py-14 sm:py-20">
+      {/* ── 4. WHY ETX FAB ───────────────────────────────────────── */}
+      <section className="bg-navy-deep py-16 sm:py-20 border-b border-white/5">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6">
+          <h2 className="text-2xl sm:text-3xl font-bold text-white mb-10">Why ETX Fab</h2>
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-8">
+            {differentiators.map(({ title, desc }) => (
+              <div key={title} className="flex flex-col gap-3">
+                <div className="flex items-center gap-2">
+                  <CheckCircle2 size={20} className="text-red shrink-0" />
+                  <h3 className="font-bold text-white text-lg">{title}</h3>
+                </div>
+                <p className="text-gray-300 text-sm leading-relaxed">{desc}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ── 5. FEATURED WORK / GALLERY ───────────────────────────── */}
+      <section className="bg-navy py-14 sm:py-20">
         <div className="max-w-6xl mx-auto px-4 sm:px-6">
           <div className="flex items-end justify-between gap-4 mb-8">
             <h2 className="text-2xl sm:text-3xl font-bold text-white leading-tight">
@@ -253,7 +253,7 @@ export default function Home() {
               View full gallery <ArrowRight size={15} />
             </Link>
           </div>
-          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-2 sm:gap-3">
+          <div className="grid grid-cols-2 sm:grid-cols-3 gap-3 sm:gap-4">
             {galleryBand.map((src, i) => (
               <Link key={i} to="/gallery" className="group rounded-lg overflow-hidden bg-navy-light aspect-square block">
                 <img
@@ -268,8 +268,14 @@ export default function Home() {
         </div>
       </section>
 
-      {/* ── 5. HOW IT WORKS ──────────────────────────────────────── */}
-      <section className="bg-navy py-16 sm:py-20 border-y border-white/5">
+      {/* ── PLACEHOLDER: Reviews / Testimonials ──────────────────────
+          Add a Google reviews section here once the shop has a Google Business Profile
+          and real customer reviews to show. No fake reviews or star ratings — wait for
+          the real thing. A simple 3-card grid of quote + name + star rating will work.
+      ──────────────────────────────────────────────────────────────── */}
+
+      {/* ── 6. HOW IT WORKS ──────────────────────────────────────── */}
+      <section className="bg-navy-deep py-16 sm:py-20 border-y border-white/5">
         <div className="max-w-6xl mx-auto px-4 sm:px-6">
           <h2 className="text-2xl sm:text-3xl font-bold text-white mb-12">How it works</h2>
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-8 sm:gap-6 relative">
@@ -283,24 +289,6 @@ export default function Home() {
                 <div className="text-xs text-red font-bold uppercase tracking-widest mb-1">Step {step}</div>
                 <h3 className="font-bold text-white text-lg mb-2">{title}</h3>
                 <p className="text-sm text-gray-400 leading-relaxed max-w-xs">{desc}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* ── 6. WHY ETX FAB ───────────────────────────────────────── */}
-      <section className="bg-navy-deep py-16 sm:py-20 border-b border-white/5">
-        <div className="max-w-6xl mx-auto px-4 sm:px-6">
-          <h2 className="text-2xl sm:text-3xl font-bold text-white mb-10">Why ETX Fab</h2>
-          <div className="grid grid-cols-1 sm:grid-cols-3 gap-8">
-            {differentiators.map(({ title, desc }) => (
-              <div key={title} className="flex flex-col gap-3">
-                <div className="flex items-center gap-2">
-                  <CheckCircle2 size={20} className="text-red shrink-0" />
-                  <h3 className="font-bold text-white text-lg">{title}</h3>
-                </div>
-                <p className="text-gray-300 text-sm leading-relaxed">{desc}</p>
               </div>
             ))}
           </div>
