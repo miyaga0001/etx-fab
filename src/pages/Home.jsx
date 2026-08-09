@@ -3,7 +3,7 @@ import {
   Settings2, Hammer, Flame, Wrench, Building2, ShieldCheck,
   ArrowRight, CheckCircle2, Phone, Check, MessageSquare, FileText,
 } from 'lucide-react'
-import work1 from '../assets/work/work-1.jpg'
+import HeroCarousel from '../components/HeroCarousel'
 
 const galleryPhotos = Object.entries(
   import.meta.glob('../assets/gallery/*.{jpg,jpeg,png,webp}', { eager: true })
@@ -163,19 +163,8 @@ export default function Home() {
             </div>
           </div>
 
-          {/* Right: single feature photo */}
-          <div className="relative rounded-[18px] overflow-hidden border border-white/10 shadow-2xl lg:h-[500px]">
-            <img
-              src={work1}
-              alt="Custom metal fabrication — ETX Fab and Machine shop"
-              className="w-full h-full object-cover min-h-[300px]"
-            />
-            <div className="absolute bottom-4 left-4">
-              <span className="inline-flex items-center bg-black/55 backdrop-blur-sm text-white text-xs font-medium px-3 py-1.5 rounded-full border border-white/20">
-                Real work from our shop
-              </span>
-            </div>
-          </div>
+          {/* Right: hero photo carousel */}
+          <HeroCarousel />
 
         </div>
       </section>
