@@ -1,9 +1,11 @@
+import { useState } from 'react'
 import { Link } from 'react-router-dom'
 import {
   Settings2, Hammer, Flame, Wrench, Building2, ShieldCheck,
   ArrowRight, CheckCircle2, Phone, Check, MessageSquare, FileText,
 } from 'lucide-react'
 import HeroCarousel from '../components/HeroCarousel'
+import Lightbox from '../components/Lightbox'
 
 const galleryPhotos = Object.entries(
   import.meta.glob('../assets/gallery/*.{jpg,jpeg,png,webp}', { eager: true })
@@ -89,6 +91,7 @@ const steps = [
 
 export default function Home() {
   const galleryBand = galleryPhotos.slice(0, 6)
+  const [lightboxIndex, setLightboxIndex] = useState(null)
 
   return (
     <div className="pb-20 md:pb-0">
@@ -244,18 +247,31 @@ export default function Home() {
           </div>
           <div className="grid grid-cols-2 sm:grid-cols-3 gap-3 sm:gap-4">
             {galleryBand.map((src, i) => (
-              <Link key={i} to="/gallery" className="group rounded-lg overflow-hidden bg-navy-light aspect-square block">
+              <button
+                key={i}
+                onClick={() => setLightboxIndex(i)}
+                aria-label={`Open image ${i + 1} in lightbox`}
+                className="group rounded-lg overflow-hidden bg-navy-light aspect-square block w-full cursor-pointer"
+              >
                 <img
                   src={src}
                   alt="ETX Fab shop work"
                   loading="lazy"
                   className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
                 />
-              </Link>
+              </button>
             ))}
           </div>
         </div>
       </section>
+
+      {lightboxIndex !== null && (
+        <Lightbox
+          images={galleryBand.map((src, i) => ({ src, alt: `ETX Fab shop work — photo ${i + 1}` }))}
+          startIndex={lightboxIndex}
+          onClose={() => setLightboxIndex(null)}
+        />
+      )}
 
       {/* ── PLACEHOLDER: Reviews / Testimonials ──────────────────────
           Add a Google reviews section here once the shop has a Google Business Profile

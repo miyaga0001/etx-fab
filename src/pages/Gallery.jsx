@@ -1,5 +1,7 @@
+import { useState } from 'react'
 import { Link } from 'react-router-dom'
 import { ArrowRight } from 'lucide-react'
+import Lightbox from '../components/Lightbox'
 
 const photos = Object.entries(
   import.meta.glob('../assets/gallery/*.{jpg,jpeg,png,webp}', { eager: true })
@@ -7,7 +9,11 @@ const photos = Object.entries(
   .sort(([a], [b]) => a.localeCompare(b, undefined, { numeric: true }))
   .map(([, mod]) => mod.default)
 
+const images = photos.map((src, i) => ({ src, alt: `ETX Fab shop work — photo ${i + 1}` }))
+
 export default function Gallery() {
+  const [lightboxIndex, setLightboxIndex] = useState(null)
+
   return (
     <div>
       {/* Page header */}
@@ -25,14 +31,19 @@ export default function Gallery() {
         <div className="max-w-6xl mx-auto px-4 sm:px-6">
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
             {photos.map((src, i) => (
-              <div key={i} className="rounded-lg border border-white/10 overflow-hidden bg-navy-light">
+              <button
+                key={i}
+                onClick={() => setLightboxIndex(i)}
+                aria-label={`Open photo ${i + 1} in lightbox`}
+                className="group rounded-lg border border-white/10 overflow-hidden bg-navy-light w-full cursor-pointer"
+              >
                 <img
                   src={src}
-                  alt="Custom fabrication"
+                  alt={`ETX Fab shop work — photo ${i + 1}`}
                   loading="lazy"
-                  className="w-full h-64 object-cover"
+                  className="w-full h-64 object-cover group-hover:scale-105 transition-transform duration-300"
                 />
-              </div>
+              </button>
             ))}
           </div>
         </div>
@@ -51,6 +62,14 @@ export default function Gallery() {
           </Link>
         </div>
       </section>
+
+      {lightboxIndex !== null && (
+        <Lightbox
+          images={images}
+          startIndex={lightboxIndex}
+          onClose={() => setLightboxIndex(null)}
+        />
+      )}
     </div>
   )
 }
