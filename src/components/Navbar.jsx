@@ -54,6 +54,12 @@ export default function Navbar() {
                 {label}
               </NavLink>
             ))}
+            <a
+              href="tel:19036869895"
+              className="flex items-center gap-1.5 text-white font-bold text-base hover:text-red transition-colors"
+            >
+              <Phone size={16} className="text-red" /> (903) 686-9895
+            </a>
             <Link
               to="/quote"
               className="bg-red hover:bg-red-bright text-white text-sm font-semibold px-4 py-2 rounded transition-colors"

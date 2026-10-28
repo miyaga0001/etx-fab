@@ -65,6 +65,10 @@ export default function About() {
                   <h3 className="font-semibold text-white mb-1">Location</h3>
                   <p className="text-sm text-gray-400">East Texas</p>
                   <p className="text-xs text-gray-500 mt-1">505 E Cotton St, Longview, TX 75601</p>
+                  <p className="text-xs text-gray-400 mt-2 flex items-center gap-1.5">
+                    <Clock size={13} className="text-red shrink-0" />
+                    Mon–Fri: 8:00 AM – 5:00 PM
+                  </p>
                 </div>
               </div>
 

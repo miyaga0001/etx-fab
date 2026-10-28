@@ -332,7 +332,7 @@ export default function Home() {
         <div className="max-w-6xl mx-auto px-4 sm:px-6 flex flex-col sm:flex-row items-center justify-between gap-6">
           <div>
             <h2 className="text-2xl font-bold text-white mb-1">Have a project or a broken part?</h2>
-            <p className="text-white/80 text-sm">We'll get you a quote — usually the same day.</p>
+            <p className="text-white/80 text-sm">Call or text and talk to a real person — most quotes back the same day.</p>
           </div>
           <div className="flex flex-wrap gap-3 shrink-0">
             <Link

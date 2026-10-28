@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom'
-import { Phone, MapPin, Mail, MessageSquare } from 'lucide-react'
+import { Phone, MapPin, Mail, MessageSquare, Clock } from 'lucide-react'
 
 export default function Footer() {
   return (
@@ -54,6 +54,10 @@ export default function Footer() {
             <li className="flex items-start gap-2">
               <MapPin size={15} className="text-red shrink-0 mt-0.5" />
               <span>505 E Cotton St, Longview TX 75601</span>
+            </li>
+            <li className="flex items-start gap-2">
+              <Clock size={15} className="text-red shrink-0 mt-0.5" />
+              <span>Mon–Fri: 8:00 AM – 5:00 PM</span>
             </li>
           </ul>
         </div>
